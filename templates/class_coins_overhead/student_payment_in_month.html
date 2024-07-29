@@ -1,0 +1,58 @@
+{% extends 'admin/index.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+          integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="../../static/css/student_payed_list/to'lov.min.css">
+{% endblock %}
+
+{% block section %}
+    <section class="pay">
+        <div class="pay_block">
+            <div class="pay_double">
+                <button class="pay_filter_btn">Filter</button>
+                <div class="pay_search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Qidiruv">
+                </div>
+            </div>
+            <div class="pay_list">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Coin</th>
+                        <th>Reason</th>
+                        <th>
+                            Added by
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for class_coins in class_coins_by_month %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ class_coins.class_coins.years.year }}-{{ class_coins.class_coins.month.month_number }}-{{ class_coins.day.day_number }}</td>
+                            <td>{% if class_coins.type == True %}
+                                <i style="color: green" class="fa-solid fa-plus"></i>
+                            {% else %}
+                                <i style="color: red" class="fa-solid fa-minus"></i>
+                            {% endif %} </td>
+                            <td>{{ class_coins.coins }}</td>
+                            <td>{{ class_coins.reason }}</td>
+                            <td>{{ class_coins.user.name }} {{ class_coins.user.surname }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block js %}
+    <script src="/static/js/student_payments_in_month/payments_in_monyh.js"></script>
+{% endblock %}

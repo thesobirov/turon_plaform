@@ -1,0 +1,82 @@
+.home
+  width: 100%
+  height: 100vh
+  display: flex
+  flex-direction: column
+  align-items: center
+  position: relative
+  background-color: #EFC18D
+
+  &_img
+    width: 100%
+    height: 60%
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/img/home/img/school_background.JPG")
+    background-position: center
+    background-size: cover
+
+  .header
+    width: 100%
+    height: 8rem
+    background-color: transparent
+    display: flex
+    justify-content: space-around
+    align-items: center
+    opacity: 1
+    position: fixed
+    z-index: 6
+    right: 0
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .1)
+
+    ul
+      width: 80%
+      display: flex
+      justify-content: space-between
+      list-style: none
+      letter-spacing: 1px
+
+      a
+        font-size: 2rem
+        text-decoration: none
+        color: #fff
+
+    .btn
+      width: 13rem
+      height: 45px
+      border-radius: 5px
+      border: none
+      background-color: #001b61
+      color: #fff
+      font-size: 18px
+
+    .apply
+      background-color: #EFC18D
+
+  &_information
+    width: 100%
+    height: 40%
+    color: white
+
+    .about
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: center
+      gap: 1.5rem
+      text-align: center
+      font-size: 32px
+      padding: 2rem 20rem
+
+      a
+        color: #001b61
+        text-decoration: none
+
+      i
+        color: #001b61
+
+    .info_link
+      display: flex
+      justify-content: center
+      align-items: center
+      gap: 1.5rem
+
+

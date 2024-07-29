@@ -1,0 +1,85 @@
+{% extends 'admin/index.html' %}
+{% block css %}
+    <link rel="stylesheet" href="../../static/css/lesson_table/table.min.css">
+{% endblock %}
+
+{% block section %}
+    <section class="main">
+        <div class="main_select">
+            <select name="" id="" class="select">
+                {% for day in days %}
+                    <option value="{{ day.id }}">{{ day.name }}</option>
+                {% endfor %}
+            </select>
+            <div class="right_nav">
+                <div class="main_btns">
+                    <button id="patok">Patok</button>
+                    <button id="sinf">Sinf</button>
+                </div>
+                <a href="{{ url_for("timetables") }}" style="margin-top: 10px; align-self: flex-end">
+                    <button>Change</button>
+                </a>
+            </div>
+        </div>
+        {#        {% for lessons in lesson_list %}#}
+        <div class="main_table {{ lesson_list["day_name"] }}">
+            <table>
+                <thead>
+                <tr>
+                    <th rowspan="2">Xonalar nomi</th>
+                    {% for time in times %}
+                        <th>{{ time.start }} : {{ time.end }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for room in lesson_list["rooms"] %}
+                    <tr>
+                        <td>{{ room["class_info"] }}</td>
+                        {% for lesson_list in room["lessons"] %}
+
+                            {% if lesson_list["flow"] %}
+                                <td class="flow_td">
+                                    {% if lesson_list["teacher"] %}
+                                        <p class="flow_p">{{ lesson_list["teacher"]['name'] }} {{ lesson_list["teacher"]['surname'] }}</p>
+                                    {% endif %}
+                                    {% if lesson_list["subject"] %}
+                                        <p class="flow_p">{{ lesson_list["subject"]['name'] }}</p>
+                                    {% endif %}
+                                    {% if lesson_list["flow"] %}
+                                        <p class="flow_p">{{ lesson_list["flow"]['name'] }}</p>
+                                    {% endif %}
+                                    {% if lesson_list["room"] %}
+                                        <p class="flow_p">{{ lesson_list["room"]['name'] }}</p>
+                                    {% endif %}
+                                </td>
+                            {% else %}
+                                {% if lesson_list["flow"] == None %}
+                                    <td class="simple_td">
+                                        {% if lesson_list["teacher"] %}
+                                            <p class="simple_p">{{ lesson_list["teacher"]['name'] }} {{ lesson_list["teacher"]['surname'] }}</p>
+                                        {% endif %}
+                                        {% if lesson_list["subject"] %}
+                                            <p class="simple_p">{{ lesson_list["subject"]['name'] }}</p>
+                                        {% endif %}
+                                        {% if lesson_list["room"] %}
+                                            <p class="simple_p">{{ lesson_list["room"]['name'] }}</p>
+                                        {% endif %}
+                                    </td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {#        {% endfor %}#}
+    </section>
+{% endblock %}
+
+{% block js %}
+    <script src="../../static/js/lesson_table/lesson_table.js"></script>
+{% endblock %}

@@ -1,0 +1,190 @@
+{% extends 'admin/index.html' %}
+{% block css %}
+    <link rel="stylesheet" href="/static/css/flow_student/flow_student%5D.min.css">
+{% endblock %}
+{% block section %}
+    <section class="time">
+
+        <div class="message">
+            <h4></h4>
+        </div>
+        <div class="div">
+            <a href="{{ url_for("timetables") }}">
+                <button id="class">Class</button>
+            </a>
+            <button id="patok">Patok</button>
+            <button class="addFlowType"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <div class="fanlar">
+            {#            {% for type in flow_types %}#}
+            {#                <div data-active="false" data-start="{{ type["start"] }}" data-end="{{ type["end"] }}"#}
+            {#                     data-color="{{ type["color"] }}" class="fan"#}
+            {#                        {% if type["color"] == "blue green" %}#}
+            {#                     style="background-image: linear-gradient(to left,green 20%, blue )"#}
+            {#                        {% endif %}#}
+            {#                        {% if type["color"] == "green" %}#}
+            {#                     style="background-color: green"#}
+            {#                        {% else %}#}
+            {#                     style="background-color: blue"#}
+            {#                        {% endif %}#}
+            {#                >{{ type["classes"] }}-{{ type["color"] }}#}
+            {#                </div>#}
+            {#            {% endfor %}#}
+            {% for type in flow_types %}
+                <div data-active="false" data-start="{{ type.start }}" data-end="{{ type.end }}"
+                     data-color="{{ type.color }}" class="fan"
+                        {#                        {% if type.color == "blue green" %}#}
+                        {% if "blue" in type.color and  "green" in type.color %}
+                     style="background-image: linear-gradient(to left,green 20%, blue )"
+                        {% endif %}
+                        {% if type.color == "green" %}
+                     style="background-color: green"
+                        {% else %}
+                     style="background-color: blue"
+                        {% endif %}
+                >{{ type.classes }}-{{ type.color }}
+                    <a href="{{ url_for('delete_flow_type', flow_type_id=type.id) }}"><i class="fa-solid fa-trash"></i></a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="time_btns">
+            <button id="flow">Flow</button>
+            <button id="room">Rooms</button>
+        </div>
+        <div class="time_subjects active" id="flow_list">
+            <div class="time_first">
+                {% for flow in flows %}
+                    <div class="time_subject rooms" draggable="true"
+                         data-flowId="{{ flow.id }}">{{ flow.name }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="time_subjects" id="room_list">
+            <div class="time_first">
+                {% for room in rooms %}
+                    <div class="time_subject flows" draggable="true"
+                         data-roomId="{{ room.id }}">{{ room.name }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="modalAddFlow">
+            <div class="form">
+                <h1>Add Flow Type</h1>
+                <div class="modalAddFlowContainer">
+                    {% for class_type in class_types %}
+                        <div class="modalAddFlowClassCheck">
+                            <p>{{ class_type.class_number }}</p>
+                            <input data-id="{{ class_type.class_number }}" type="checkbox"
+                                   class="classNumberCheck">
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="modalAddFlowClassType">
+                    {% for color_tp in color_type %}
+                        <div class="modalAddFlowClassCheck">
+                            <p>{{ color_tp }}</p>
+                            <input data-id="{{ color_tp }}" type="checkbox"
+                                   class="classColorCheck">
+                        </div>
+                    {% endfor %}
+                </div>
+                <button>Send</button>
+            </div>
+        </div>
+        <div class="variant_and_table">
+            <div class="main_container">
+
+                {#                <div class="container_direction">#}
+                {#                    <div class="time_two">#}
+                {#                        <div class="time_table">#}
+                {#                            <table>#}
+                {#                                <caption class="caption"#}
+                {#                                        {% if color == "green" %}#}
+                {#                                         style="background-color: green"#}
+                {#                                        {% else %}#}
+                {#                                         style="background-color: blue"#}
+                {#                                        {% endif %}>{{ class_list2 }} {{ color }}#}
+                {#                                </caption>#}
+                {#                                <thead>#}
+                {#                                <tr>#}
+                {#                                    <th rowspan="2">Hafta kunlari</th>#}
+                {#                                    {% for time in times %}#}
+                {#                                        <th>{{ time.start }} {{ time.end }}</th>#}
+                {#                                    {% endfor %}#}
+                {#                                </tr>#}
+                {#                                <tr>#}
+                {#                                    {% for time in times %}#}
+                {#                                        <th>#}
+                {#                                            {{ time.lesson_count }}#}
+                {#                                        </th>#}
+                {#                                    {% endfor %}#}
+                {#                                </tr>#}
+                {#                                </thead>#}
+                {#                                <tbody>#}
+                {#                                {% for info in time_table %}#}
+                {#                                    <tr>#}
+                {#                                        <td data-dayId="{{ info["day"]["id"] }}">{{ info["day"]["name"] }}</td>#}
+                {#                                        {% for lesson in info["lessons"] %}#}
+                {#                                            {% if lesson["lesson_time"]["count"] == "breakfast" %}#}
+                {#                                                <td data-timeId="{{ lesson["lesson_time"]["id"] }}"#}
+                {#                                                    data-dayId="{{ info["day"]["id"] }}"#}
+                {#                                                    class=""#}
+                {#                                                    style="background-color: rgba(0,0,0,0.09)">#}
+                {#                                                </td>#}
+                {#                                            {% else %}#}
+                {#                                                <td data-lessonId="{{ lesson["lesson_id"] }}"#}
+                {#                                                    data-dayId="{{ info["day"]["id"] }}"#}
+                {#                                                    data-timeId="{{ lesson["lesson_time"]["id"] }}"#}
+                {#                                                    class="zone-1"#}
+                {#                                                        {% if lesson["flow"] and  lesson["room"] %}#}
+                {#                                                    data-flowId="{{ lesson["flow"]["id"] }}"#}
+                {#                                                    data-roomId="{{ lesson["room"]["id"] }}"#}
+                {##}
+                {#                                                        {% endif %}#}
+                {#                                                        {% if not lesson["flow"] and  lesson["room"] %}#}
+                {#                                                    data-roomId="{{ lesson["room"]["id"] }}"#}
+                {#                                                        {% endif %}#}
+                {#                                                        {% if lesson["flow"] and not lesson["room"] %}#}
+                {#                                                    data-flowId="{{ lesson["flow"]["id"] }}"#}
+                {#                                                        {% endif %}#}
+                {#                                                >#}
+                {#                                                    {% if lesson["flow"] and  lesson["room"] %}#}
+                {#                                                        <div class="time_subject flows" draggable="true"#}
+                {#                                                             data-flowId="{{ lesson["flow"]["id"] }}"#}
+                {#                                                             data-isDropped="true"#}
+                {#                                                             data-lessonId="{{ lesson["lesson_id"] }}">{{ lesson["flow"]["name"] }}</div>#}
+                {#                                                        <div class="time_subject rooms" draggable="true"#}
+                {#                                                             data-roomId="{{ lesson["room"]["id"] }}"#}
+                {#                                                             data-isDropped="true"#}
+                {#                                                             data-lessonId="{{ lesson["lesson_id"] }}">{{ lesson["room"]["name"] }}</div>#}
+                {#                                                    {% endif %}#}
+                {#                                                    {% if not lesson["flow"] and  lesson["room"] %}#}
+                {#                                                        <div class="time_subject rooms" draggable="true"#}
+                {#                                                             data-roomId="{{ lesson["room"]["id"] }}"#}
+                {#                                                             data-isDropped="true"#}
+                {#                                                             data-lessonId="{{ lesson["lesson_id"] }}">{{ lesson["room"]["id"] }}</div>#}
+                {#                                                    {% endif %}#}
+                {#                                                    {% if lesson["flow"] and not lesson["room"] %}#}
+                {#                                                        <div class="time_subject flows" draggable="true"#}
+                {#                                                             data-flowId="{{ lesson["flow"]["id"] }}"#}
+                {#                                                             data-isDropped="true"#}
+                {#                                                             data-lessonId="{{ lesson["lesson_id"] }}">{{ lesson["flow"]["name"] }}</div>#}
+                {#                                                    {% endif %}#}
+                {#                                                </td>#}
+                {#                                            {% endif %}#}
+                {##}
+                {#                                        {% endfor %}#}
+                {#                                    </tr>#}
+                {#                                {% endfor %}#}
+                {#                                </tbody>#}
+                {#                            </table>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                </div>#}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block js %}
+    <script src="/static/js/flow_student/flow_student.js"></script>
+{% endblock %}

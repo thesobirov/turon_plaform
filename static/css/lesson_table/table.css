@@ -1,0 +1,94 @@
+html {
+  font-size: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Blinker", sans-serif;
+}
+
+.main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+.main_select {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.main_select select {
+  width: 18rem;
+  height: 4rem;
+  outline: none;
+  color: #111f4c;
+}
+.main_select button {
+  width: 6rem;
+  height: 4rem;
+  outline: none;
+  border: none;
+}
+.main_select button:nth-child(2) {
+  background-color: #111f4c;
+  color: white;
+}
+.main_btns {
+  display: flex;
+  gap: 0.5rem;
+}
+.main_table {
+  width: 90%;
+  height: 100%;
+  font-size: 1.6rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.main_table table {
+  width: 100%;
+}
+.main_table table th {
+  border: 1px solid black;
+  width: 15rem;
+  height: 5rem;
+}
+.main_table table tbody td {
+  border: 1px solid black;
+  height: 7rem;
+  text-align: center;
+}
+
+.flow_td {
+  background-color: rgba(128, 128, 128, 0.1882352941);
+}
+
+.simple_td {
+  background-color: #111f4c;
+}
+
+.simple_p {
+  color: white;
+}
+
+.flow_p {
+  color: black;
+}
+
+.active_table {
+  display: flex;
+}
+
+.right_nav {
+  display: flex;
+  flex-direction: column;
+}
+
+/*# sourceMappingURL=table.css.map */

@@ -1,0 +1,330 @@
+{% extends 'admin/index.html' %}
+{% block title %}sinf{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="../../static/css/class_profile/sinf.min.css">
+{% endblock %}
+{% block section %}
+    <section class="main">
+        <div class="main_box">
+            <div class="main_profile">
+                {#                <div class="main_img">#}
+                {#                    <div class="main_picture" style="display: flex;align-items: center;justify-content: center">#}
+                {#                        <img src="" alt="">#}
+                {#                        <i style="font-size: 50px" class="fa-solid fa-users-between-lines"></i>#}
+                {#                        <div class="top"><i class="fa-solid fa-image"></i></div>#}
+                {##}
+                {#                    </div>#}
+                {#                    <div class="class_number">#}
+                {#                        <h1>{{ classs.name }}</h1>#}
+                {#                        <div class="pay" style="display:flex;">#}
+                {#                            <i style="color: goldenrod" class="fa-solid fa-file-invoice-dollar"></i>#}
+                {#                            <div style="color: goldenrod">34</div>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                </div>#}
+                <div class="main_img">
+                    <div class="main_picture">
+                        <img src="" alt="">
+                        <div class="top"><i class="fa-solid fa-image"></i></div>
+                    </div>
+                    <div class="class_number">
+                        <h1>{{ classs.name }}</h1>
+                        <div class="pay">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                            <div>
+                                {% if filtered_coin.coins == 0 or not filtered_coin %}
+                                    0
+                                {% else %}
+                                    {{ filtered_coin.rest_coins }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="icon_img_i"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+            </div>
+            <div class="main_about">
+                <div class="div">
+                    <div class="main_about_information">Name: <span>{{ classs.name }}</span></div>
+                    <div class="main_about_information">Student count: <span>{{ students }}</span></div>
+                    {% for cl in classs.teacher %}
+                        <div class="main_about_information">Teacher:
+                            <span>{{ cl.user.name }} {{ cl.user.surname }}</span></div>
+                        <div class="main_about_information">Birth day: <span>{{ cl.user.birth_date }}</span></div>
+                    {% endfor %}
+                </div>
+                <div class="main_table">
+                    <div><span>List of students</span></div>
+                    <table>
+                        {% for cl in students_info %}
+                            <tr>
+                                <td><span>{{ loop.index }}</span></td>
+                                <td>
+                                    <a href="{{ url_for("student_profile", student_id=cl['student_id']) }}">{{ cl['name'] }}</a>
+                                </td>
+                                <td>
+                                    <a href="{{ url_for("student_profile", student_id=cl['student_id']) }}">{{ cl['surname'] }}</a>
+                                </td>
+                                {% if user.role == "director" or  user.role == "admin" %}
+                                    <td>
+                                        {% if cl['plus'] == "true" %}
+                                            <p style="width: 90%; color: forestgreen; padding: 5px; box-shadow: 0 0 10px 5px #3ed83e; border-radius: 10px; text-align: center">
+                                                {{ cl['debtor'] }}
+                                            </p>
+                                        {% else %}
+                                            <p style="width: 90%;color: red; padding: 5px; box-shadow: 0 0 10px 5px red; border-radius: 10px; text-align: center">
+                                                {{ cl['debtor'] }}
+                                            </p>
+                                        {% endif %}
+                                    </td>
+                                {% endif %}
+
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="salary">
+            <div class="close">
+                <i class="fa-solid fa-x"></i>
+            </div>
+            <i class="fa-solid fa-ellipsis-vertical edit"></i>
+            <div class="ellipses_add">
+
+                <div class="info">
+                    <i class="fa-solid fa-pen"></i>
+                    <div>Change</div>
+                </div>
+                <div class="info">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <div>Ball</div>
+                </div>
+                <div class="info add">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    <div>Qo'shish</div>
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <th>Month</th>
+                    <th>Coins</th>
+                    <th>Given coins</th>
+                    <th>Rest coins</th>
+                </tr>
+                {% for coin in filtered_coins %}
+                    <tr>
+                        <td>
+                            <a href="{{ url_for("overhead_coins_in_month", class_coin_id=coin.id) }}">{{ coin.years.year }}-{{ coin.month.month_number }}</a>
+                        </td>
+                        <td>
+                            <a href="{{ url_for("overhead_coins_in_month", class_coin_id=coin.id) }}">{{ coin.coins }}</a>
+                        </td>
+                        <td>
+                            <a href="{{ url_for("overhead_coins_in_month", class_coin_id=coin.id) }}">{{ coin.given_coins }}</a>
+                        </td>
+                        <td>
+                            <a href="{{ url_for("overhead_coins_in_month", class_coin_id=coin.id) }}">{{ coin.rest_coins }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+
+            </table>
+
+            <div class="ball_box">
+                <div class="close2">
+                    <i class="fa-solid fa-x"></i>
+                </div>
+                <h1>Ball</h1>
+                <div class="ball_pay">
+                    <div class="blue">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                        <div>Ball:
+                            {% if filtered_coin.coins == 0 or not filtered_coin %}
+                                0
+                            {% else %}
+                                {{ filtered_coin.rest_coins }}
+                            {% endif %}</div>
+                    </div>
+
+                    <div class="radios" style="justify-content: space-around">
+                        <div class="radio">
+                            <input checked name="radio" type="radio" data-type="true" class="type_radio">
+                            <div>Qo'shish</div>
+                        </div>
+                        <div class="radio">
+                            <input name="radio" type="radio" data-type="false" class="type_radio">
+                            <div>Ayirish</div>
+                        </div>
+                    </div>
+                    <input type="text" placeholder="reason" class="reason_coin">
+                    <input type="text" placeholder="350000" class="coin_count">
+                    <button>Qo'shish</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="change">
+            <div class="change_box">
+                <div class="change_profile">
+                    <div class="change_img">
+                        <div class="main_picture">
+                            <img src="" alt="">
+                            <div class="top"><i class="fa-solid fa-image"></i></div>
+                        </div>
+                        <h1>{{ classs.name }}</h1>
+                    </div>
+                </div>
+                <div class="change_about">
+                    <div class="div">
+                        <form action="{{ url_for("edit_class", class_id=classs.id) }}" method="post">
+                            <input type="text" value="{{ classs.name }}" name="name">
+                            <select name="teacher">
+                                {% for teach in classs.teacher %}
+                                    <option value="{{ teach.id }}">{{ teach.user.name }} {{ teach.user.surname }} </option>
+                                {% endfor %}
+                                {% for teacher in teachers %}
+                                    <option value="{{ teacher.id }}">{{ teacher.user.name }} {{ teacher.user.surname }} </option>
+                                {% endfor %}
+                            </select>
+                            <select name="color" id="">
+                                {% if classs.color == "green" %}
+                                    <option value="green">green</option>
+                                    <option value="blue">blue</option>
+                                {% else %}
+                                    <option value="blue">blue</option>
+                                    <option value="green">green</option>
+                                {% endif %}
+                            </select>
+                            <select name="class_number" id="">
+                                <option value="{{ classs.class_number }}">{{ classs.class_number }}</option>
+                                {% for class_type in class_types %}
+                                    <option value="{{ class_type.class_number }}">{{ class_type.class_number }}</option>
+                                {% endfor %}
+                            </select>
+                            <button class="btn">Change</button>
+                        </form>
+                    </div>
+                    <div class="change_table">
+                        <div class="index">
+                            <div class="title">List of students</div>
+                            <div>
+                                <div class="delete_btn"><i class="fa-solid fa-trash"></i></div>
+                                <div class="exchange"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                                <button class="move">Move</button>
+                            </div>
+                        </div>
+                        <table>
+                            {% for cl in classs.student %}
+                                <tr>
+                                    <td><span>{{ loop.index }}</span></td>
+                                    <td>{{ cl.user.name }}</td>
+                                    <td>{{ cl.user.surname }}</td>
+                                    <td class="x xx"><i class="fa-solid fa-xmark" data-id="{{ cl.id }}"
+                                                        data-class_id="{{ classs.id }}"></i></td>
+                                    <td class="check"><input type="checkbox" data-id="{{ cl.id }}"></td>
+                                </tr>
+                            {% endfor %}
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="change_overlay">
+            <div class="change_overlay_box">
+                <div class="form">
+                    <select name="" id="" class="delete_type">
+                        <option value="in_class">Delete student in class</option>
+                        <option value="all">Delete student in class and all</option>
+                    </select>
+                    <input type="text" placeholder="Sabab" class="reason">
+                    <button class="change_overlay_btn">Add</button>
+                </div>
+            </div>
+        </div>
+        <div class="add_background">
+            <div class="add">
+                <div class="names">
+                    <div class="names_list">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Teacher</th>
+                                <th>Students</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for class in classes %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td><img src="" alt=""></td>
+                                    <td>{{ class.name }}</td>
+                                    {% for teach in class.teacher %}
+                                        <td>{{ teach.user.name }}{{ teach.user.surname }}</td>
+
+                                    {% endfor %}
+                                    <td>{{ class.student|length }}</td>
+                                    <td><input class="radio" type="radio" name="radio" data-id="{{ class.id }}"></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <button class="send_class">Send</button>
+        </div>
+        <div class="ellipsis_overlay">
+            {% if user and user.role == "admin"  or user.role == "director" %}
+                <div id="change" class="ellipsis_overlay_box change_btn">
+                    <i class="fa-solid fa-pen i"></i>
+                    <div>Change</div>
+                </div>
+                <a href="{{ url_for("creat_timetable", class_id=classs.id) }}">
+                    <div class="ellipsis_overlay_box">
+                        <i class="fa-regular fa-clock"></i>
+                        <div>Timetable</div>
+                    </div>
+                </a>
+
+                <a href="{{ url_for("class_subjects", class_id=classs.id) }}">
+                    <div class="ellipsis_overlay_box">
+                        <i class="fa-solid fa-book-open"></i>
+                        <div>Subjects</div>
+                    </div>
+                </a>
+                <div class="ellipsis_overlay_box delete_btn_class" data-id="{{ classs.id }}">
+                    <i class="fa-regular fa-trash-can"></i>
+                    <div>Delete</div>
+                </div>
+            {% endif %}
+            <div class="ellipsis_overlay_box info ball">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                <div>Ball</div>
+            </div>
+        </div>
+    </section>
+    <div class="change_overlay2">
+        <div class="change_overlay2_box">
+            <div class="form">
+                <select name="" id="" class="delete_type_class">
+                    <option value="in_class">Delete to news students</option>
+                    <option value="all">Delete student in all</option>
+                </select>
+                <input type="text" placeholder="Sabab" class="reason_class">
+                <button class="delete_class" data-id="{{ classs.id }}">Add</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="/static/js/class_profile/sinf.js"></script>
+{% endblock %}
+

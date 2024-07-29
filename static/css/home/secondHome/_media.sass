@@ -1,0 +1,275 @@
+@media (max-width: 1500px)
+  html
+    font-size: 10px
+
+  .about
+    font-size: 25px
+  .gallery_block
+    display: grid
+    grid-template-rows: repeat(3, 240px)
+    grid-gap: 15px 25px
+
+
+@media (max-width: 1200px)
+
+  .home
+    .about
+      font-size: 22px
+
+    .header
+      ul
+        width: 80%
+        gap: 2.5rem
+
+        a
+          font-size: 16px
+
+      &_logo img
+        width: 160px
+        height: 60px
+
+      .btn
+        width: 11rem
+        height: 4rem
+        font-size: 16px
+
+  .gallery
+    h1
+      padding-left: 3.5rem
+
+    &_block
+      display: grid
+      grid-template-rows: repeat(3, 240px)
+
+
+@media (max-width: 1024px)
+  .home
+    .about
+      font-size: 20px
+
+@media (max-width: 991px)
+  .home
+    background-color: #efc18d
+
+    .header
+      //position: relative
+
+      &_logo
+        display: none
+
+      ul
+        display: none
+
+      .menu
+        display: none
+
+        .about_btn
+          display: block
+
+        .hide
+          overflow: hidden
+          height: 0
+          transition: all 1s
+
+    .about
+      padding: 2rem 10rem
+
+
+    .hamburger
+      display: flex
+      z-index: 6
+
+      &_radius
+        height: 70px
+        width: 70px
+        border-radius: 50%
+        animation-name: plus
+        animation-duration: 1s
+        animation-iteration-count: infinite
+        animation-timing-function: linear
+        position: absolute
+        background-color: white
+
+      &_circle
+        position: fixed
+        right: 5%
+        bottom: 5%
+
+      &_plus
+        width: 70px
+        height: 70px
+        background-color: white
+        border-radius: 50%
+        display: flex
+        align-items: center
+        justify-content: center
+        font-size: 30px
+        position: relative
+
+      @keyframes plus
+        from
+          transform: scale(1)
+          opacity: 1
+        to
+          transform: scale(1.5)
+          opacity: 0
+  .gallery
+    &_block
+      position: relative
+      height: 100%
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+      //padding: 1rem
+      grid-gap: 0
+
+
+      .box_img
+        position: absolute
+        width: 85%
+        height: 85%
+        top: 0
+        opacity: 0
+        transition: 1s
+
+    .left
+      width: 50px
+      height: 50px
+      border-radius: 50%
+      background-color: white
+      display: flex
+      align-items: center
+      justify-content: center
+      position: absolute
+      left: 1rem
+      top: 50%
+      transform: translateY(-50%)
+      font-size: 2rem
+
+    .right
+      right: 1rem
+      width: 50px
+      height: 50px
+      border-radius: 50%
+      background-color: white
+      display: flex
+      align-items: center
+      justify-content: center
+      position: absolute
+      top: 50%
+      transform: translateY(-50%)
+      font-size: 2rem
+
+    .active
+      opacity: 1
+
+
+  .footerLinks
+
+    .number
+      font-size: 2rem
+
+
+@media (max-width: 768px)
+  .home
+    height: 90vh
+
+    &_img
+      height: 50%
+
+    &_background
+      height: 50%
+
+    &_information
+      height: 50%
+  .gallery
+    height: 80vh
+    display: flex
+    flex-direction: column
+    gap: 20px
+
+    h1
+      padding-left: 7rem
+
+    &_block
+      padding: 0
+      height: 90%
+
+      .box_img
+        width: 80%
+        height: 90%
+  .map
+    height: 50rem
+  .footerLinks
+    h1
+      font-size: 18px
+
+@media (max-width: 576px)
+  .home
+    .about
+      padding: 2rem 2rem
+  .gallery
+    height: 50rem
+
+    .box_img
+      width: 70%
+      height: 80%
+  .footerLinks
+    height: 85rem
+
+    &_block
+      display: flex
+      flex-direction: column
+      gap: 2rem
+
+      .info
+        h1
+          font-size: 22px
+
+    .logo
+      width: 15rem
+      height: 6rem
+
+@media (max-width: 400px)
+  .home
+    height: 60rem
+
+    &_img
+      height: 45%
+
+    &_background
+      height: 45%
+
+    &_information
+      height: 55%
+
+      .about
+        font-size: 16px
+
+  .gallery
+    height: 40rem
+    display: flex
+    align-items: center
+
+    h1
+      padding-left: 0
+
+    .right, .left
+      height: 4rem
+      width: 4rem
+
+  .map
+    height: 40rem
+  .footerLinks
+    height: 80rem
+
+    .info
+      a
+        font-size: 16px
+
+    .number
+      width: 90%
+      display: flex
+      gap: 2rem
+      font-size: 16px

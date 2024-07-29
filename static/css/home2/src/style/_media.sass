@@ -1,0 +1,395 @@
+@media (max-width: 1500px)
+  html
+    font-size: 10px
+
+  .about
+    font-size: 25px
+  .gallery_block
+    .images
+      display: grid
+      grid-template-rows: repeat(3, 240px)
+      grid-gap: 15px 25px
+
+
+@media (max-width: 1200px)
+
+  .home
+    .about
+      font-size: 22px
+
+    .header
+      ul
+        width: 80%
+        gap: 2.5rem
+
+        a
+          font-size: 16px
+
+      &_logo img
+        width: 160px
+        height: 60px
+
+      .btn
+        width: 11rem
+        height: 4rem
+        font-size: 16px
+
+  .gallery
+    &_block
+      .images
+      display: grid
+      grid-template-rows: repeat(3, 220px)
+      grid-gap: 10px
+  .news
+    &_block
+      width: 95%
+      gap: 20px
+
+      .news_box
+        width: 240px
+
+        img
+          height: 20rem
+
+        .news_info
+          h2
+            font-size: 16px
+  .footerLinks
+    .number
+      width: 70%
+      display: flex
+      justify-content: space-between
+
+@media (max-width: 1024px)
+  .home
+    .about
+      font-size: 20px
+  .news
+    &_block
+      width: 100%
+      display: flex
+      gap: 15px
+
+      .news_box
+        width: 225px
+        height: 500px
+        display: flex
+        gap: 10px
+
+        .news_info
+          h2
+            font-size: 16px
+
+  .gallery
+    h1
+      padding-left: 3.5rem
+
+    &_block
+      .images
+      display: grid
+      grid-template-rows: repeat(3, 230px)
+
+
+@media (max-width: 991px)
+  .home
+    &_img
+      height: 100%
+
+    &_information
+      height: 100%
+      position: absolute
+      display: flex
+      letter-spacing: 1.5px
+
+      .info_link
+        i, a
+          color: white
+
+    .header
+      ul
+        display: none
+
+
+    .about
+      padding: 2rem 10rem
+
+
+  .menu
+    display: none
+    color: white
+
+    ul
+      list-style: none
+
+      li
+        a
+          font-size: 2rem
+          text-decoration: none
+          color: #fff
+
+    .about_btn
+      display: block
+
+    .hide
+      overflow: hidden
+      height: 0
+      transition: all 1s
+  .hamburger
+    display: flex
+    z-index: 6
+
+    &_radius
+      height: 70px
+      width: 70px
+      border-radius: 50%
+      animation-name: plus
+      animation-duration: 1s
+      animation-iteration-count: infinite
+      animation-timing-function: linear
+      position: absolute
+      background-color: white
+
+    &_circle
+      position: fixed
+      right: 5%
+      bottom: 5%
+
+    &_plus
+      width: 70px
+      height: 70px
+      background-color: white
+      border-radius: 50%
+      display: flex
+      align-items: center
+      justify-content: center
+      font-size: 30px
+      position: relative
+
+    @keyframes plus
+      from
+        transform: scale(1)
+        opacity: 1
+      to
+        transform: scale(1.5)
+        opacity: 0
+
+  .gallery
+    text-align: center
+
+    &_block
+      height: 100%
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+
+      .my_swiper
+        display: block
+        height: 100%
+
+      .images
+        position: relative
+        height: 100%
+        width: 100%
+        display: none
+        align-items: center
+        justify-content: center
+
+      .box_img
+        width: 85%
+        height: 600px
+        transition: 1s
+        padding: 50px
+
+        img
+          width: 100%
+          height: 100%
+          object-fit: cover
+
+    .left
+      width: 50px
+      height: 50px
+      border-radius: 50%
+      background-color: white
+      display: flex
+      align-items: center
+      justify-content: center
+      position: absolute
+      left: 1rem
+      top: 50%
+      transform: translateY(-50%)
+      font-size: 2rem
+      z-index: 2
+
+    .right
+      right: 1rem
+      width: 50px
+      height: 50px
+      border-radius: 50%
+      background-color: white
+      display: flex
+      align-items: center
+      justify-content: center
+      position: absolute
+      top: 50%
+      transform: translateY(-50%)
+      font-size: 2rem
+      z-index: 2
+
+  .news
+    &_block
+      position: relative
+      height: 100%
+      width: 100%
+      display: none
+      align-items: center
+      justify-content: center
+
+      &.active
+        display: block
+
+      .swiper_none
+        display: block
+        height: 100%
+
+      .news_box
+        width: 75%
+        height: 90%
+        transition: 1s
+
+        .news_info
+          padding: 3rem
+
+      .left
+        width: 50px
+        height: 50px
+        border-radius: 50%
+        background-color: white
+        display: flex
+        align-items: center
+        justify-content: center
+        position: absolute
+        left: 0
+        top: 50%
+        transform: translateY(-50%)
+        font-size: 2rem
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6)
+        z-index: 2
+
+      .right
+        right: 0
+        width: 50px
+        height: 50px
+        border-radius: 50%
+        background-color: white
+        display: flex
+        align-items: center
+        justify-content: center
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        font-size: 2rem
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6)
+        z-index: 2
+
+  .footerLinks
+    .number
+      font-size: 2rem
+
+
+@media (max-width: 768px)
+  .news
+    .right, .left
+      display: none
+  .gallery
+    height: 80vh
+    display: flex
+    flex-direction: column
+    gap: 20px
+
+    h1
+      padding-left: 7rem
+
+    &_block
+      padding: 0
+      height: 90%
+
+      .box_img
+        width: 80%
+        height: 90%
+
+    .left, .right
+      display: none
+  .map
+    height: 50rem
+  .footerLinks
+    h1
+      font-size: 18px
+
+@media (max-width: 576px)
+  .home
+    .about
+      padding: 2rem 2rem
+
+
+  .news
+    padding: 2rem
+
+    .news_box
+      height: 75%
+
+      img
+        height: 15rem
+
+      .news_info
+        font-size: 13px
+
+    .left, .right
+      display: none
+
+  .gallery
+    padding: 2rem
+
+    .box_img
+      width: 70%
+  //height: 80%
+  .footerLinks
+    &_block
+      display: flex
+      flex-direction: column
+      gap: 2rem
+
+      .info
+        h1
+          font-size: 22px
+
+    .logo
+      width: 15rem
+      height: 6rem
+
+@media (max-width: 400px)
+  .title
+    font-size: 50px
+  .gallery
+    display: flex
+    align-items: center
+
+    h1
+      padding-left: 0
+
+    .right, .left
+      display: none
+
+  .map
+    height: 40rem
+  .footerLinks
+
+    .info
+      a
+        font-size: 16px
+
+    .number
+      width: 90%
+      display: flex
+      gap: 2rem
+      font-size: 16px

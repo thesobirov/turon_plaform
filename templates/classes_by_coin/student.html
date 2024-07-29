@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Top Gpound Classes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+          integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/classes_by_coin/student.min.css">
+
+</head>
+<body>
+<section class="index">
+    <div class="names">
+        {#        <div class="names_buttons">#}
+        {##}
+        {#            <button class="filter_btn">Filter</button>#}
+        {#            <button class="coins">Coins</button>#}
+        {#            <div class="double">#}
+        {#                <div class="names_search">#}
+        {#                    <i class="fa-solid fa-magnifying-glass"></i>#}
+        {#                    <input type="text" placeholder="Qidiruv">#}
+        {#                </div>#}
+        {##}
+        {#            </div>#}
+        {##}
+        {#        </div>#}
+        <div class="coinsContainer">
+            {% for class in classes %}
+                <div class="coinsContainer_box">
+                    <div class="coinsContainer_box_index"
+                            {% if class.color == "green" %}
+                         style="background-color: #00A859"
+                            {% else %}
+                         style="background-color: #0098DA"
+                            {% endif %}
+                    >
+                        <h1>
+                            {{ class.class_number }}
+                        </h1>
+                    </div>
+                    <div class="coinsContainer_box_color"
+                            {% if class.color == "green" %}
+                         style="background-color: #00A859"
+                            {% else %}
+                         style="background-color: #0098DA"
+                            {% endif %}>
+                        <h1>{{ class.color }}</h1>
+                    </div>
+                    <div class="coinsContainer_box_coins"
+                            {% if loop.index == 1 %}
+                         style="background-color: #04FF00"
+                            {% elif loop.index == 2 %}
+                         style="background-color: #FFF212"
+
+                            {% endif %}>
+
+                        {#                        {% for class_coin in class.class_coins %}#}
+                        {#                            {% if class_coin.years.year == year.year and class_coin.month.month_number == month.month_number %}#}
+                        <img src="/static/icon/Gpound%20Sign.png" alt="">
+                        <h1>{{ class.overall_coins }}</h1>
+                        {#                            {% endif %}#}
+                        {#                        {% endfor %}#}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+</body>
+</html>

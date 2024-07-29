@@ -1,0 +1,178 @@
+{% extends 'admin/index.html' %}
+{% block css %}
+    <link rel="icon" href="/static/img/logo.jpg">
+    <link rel="stylesheet" href="../../static/css/student/main.min.css">
+    <link rel="stylesheet" href="../../static/css/student/index.min.css">
+{% endblock %}
+
+
+{% block section %}
+    <div class="index">
+        <div class="names">
+            <div class="names_buttons">
+
+                <button class="filter_btn">Filter</button>
+                <div class="double">
+                    <div class="names_search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Qidiruv" class="search">
+                    </div>
+                    <div class="div">
+                        <button class="btn">Create flow</button>
+                        <button class="add_btn">Add flow</button>
+                    </div>
+                    <a href="{{ url_for("flows") }}">
+                        <button style="padding: 10px; border: none; background-color: #c4c4c4">Flows</button>
+                    </a>
+
+                </div>
+
+                <div class="filter">
+                    <select name="language_type" id="" class="language_type">
+                        <option value="all">ALL</option>
+                        {% for language in languages %}
+                            <option value="{{ language.id }}">{{ language.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="class_number" class="class_number">
+                        <option value="sinflar">sinflar</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                    </select>
+                    <input type="text" name="from" class="from">
+                    <input type="text" name="to" class="to">
+
+                    <button class="form_filter">Search</button>
+                </div>
+            </div>
+            <div class="names_list">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th></th>
+                        <th>Name</th>
+                        <th>class number</th>
+                        <th>color</th>
+                        <th>Language</th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="tbody">
+
+                    {% for page in pages.items %}
+                        {#                        <tr>#}
+                        {#                            <td>{{ loop.index }}</td>#}
+                        {#                            <td><a href="{{ url_for("student_profile", student_id=page.user.id) }}"><img#}
+                        {#                                    src="{{ page.user.image }}" alt=""></a></td>#}
+                        {#                            <td>{{ page.user.name }}</td>#}
+                        {#                            <td>{{ page.user.surname }}</td>#}
+                        {#                            <td>{{ page.user.age }}</td>#}
+                        {#                            <td>{{ page.user.number }}</td>#}
+                        {#                            <td>{{ page.language.name }}</td>#}
+                        {#                            <td><input class="checkbox" data-id="{{ page.user.id }}" type="checkbox"></td>#}
+                        {#                            <td><i class="fa-solid fa-trash" style="color: red" data-id="{{ page.id }}"></i></td>#}
+                        {#                        </tr>#}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td><a href="{{ url_for("class_profile",class_id=page.id ) }}">
+                                {% if page.color == "green" %}
+                                    <div style="background-color: green; width: 5rem; height: 5rem; border-radius: 50%"></div>
+                                {% else %}
+                                    <div style="background-color: blue; width: 5rem; height: 5rem; border-radius: 50%"></div>
+                                {% endif %}</a>
+                            </td>
+                            <td>{{ page.name }}</td>
+                            <td>{{ page.class_number }}</td>
+                            <td>{{ page.color }}</td>
+                            <td>{{ page.language.name }}</td>
+                            <td><input class="checkbox" data-id="{{ page.id }}" type="checkbox"></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% if student_count >= 50 %}
+                <div class="next">
+                    <button {% if not pages.has_prev %}class="disabled" {% endif %}><a
+                            {% if not pages.has_prev %}class="disabled" {% endif %}
+                            href="flow?page={{ pages.prev_num }}"><i
+                            class="fa-solid fa-chevron-left"></i></a></button>
+                    {% for page in pages.iter_pages() %}
+                        <button><a href="flow?page={{ page }}">{{ page }}</a></button>
+                    {% endfor %}
+                    <button {% if not pages.has_prev %}class="disabled" {% endif %}><a
+                            {% if not pages.has_prev %}class="disabled" {% endif %}
+                            href="flow?page={{ pages.next_num }}"><i class="fa-solid fa-chevron-right"></i></a>
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+        <div class="create">
+            <div class="create_block">
+                <div class="create_name">
+                    <h1>Create flow</h1>
+                    <input type="text" class="input class_name" placeholder="Enter your name">
+                    <select name="" id="" class="teacher_id">
+                        {% for teacher in teachers %}
+                            <option value="{{ teacher.id }}">{{ teacher.user.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="" id="" class="subject_id">
+                        {% for subject in subjects %}
+                            <option value="{{ subject.id }}">{{ subject.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="creat_btn create_bnt">Create</button>
+                </div>
+            </div>
+        </div>
+        <div class="add">
+            <div class="names">
+                <div class="names_list">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Teacher</th>
+                            <th>Students</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for group in  groups %}
+                            <tr>
+
+                                <td><a href="{{ url_for("flow_profile", flow_id=group.id) }}">{{ loop.index }}</a></td>
+
+
+                                <td><a href="{{ url_for("flow_profile", flow_id=group.id) }}">{{ group.name }}</a></td>
+
+                                <td><a href="{{ url_for("flow_profile", flow_id=group.id) }}">{{ group.teacher.user.name }} {{ group.teacher.user.surname }}</a></td>
+                                <td>{{ group.students|length }}</td>
+                                <td><input class="radio" type="radio" name="class" data-id="{{ group.id }}"></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <button class="join">Add</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script src="../../static/js/student/menu.js"></script>
+    <script src="../../static/js/flow/creat_flow.js"></script>
+{% endblock %}

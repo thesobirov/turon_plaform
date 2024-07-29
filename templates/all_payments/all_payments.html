@@ -1,0 +1,322 @@
+{% extends 'admin/index.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+          integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="../../static/css/student_payed_list/to'lov.min.css">
+{% endblock %}
+
+{% block section %}
+
+    <section class="pay" data-type="{{ type_request }}">
+        <div class="pay_block">
+            <div class="pay_container">
+                <div class="pay_double">
+                    <button class="pay_filter_btn">Filter</button>
+                    {% if type_request == '' or type_request == 'p' or type_request == 'e' or type_request == 'o' or type_request == 't' or type_request == 'w' or type_request == 'c' or type_request == 'm'or type_request == 's' %}
+                        <div class="pay_search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Qidiruv">
+                        </div>
+                    {% endif %}
+                    <select id="select" class="select" name="">
+                        {% if type_request == 'p' %}
+                            <option value="payOption">Payment</option>
+                            <option value="salaryWorkerOption">Worker salary</option>
+                            <option value="salaryTeacherOption">Teacher salary</option>
+                            <option value="overheadOption">Over head</option>
+                            <option value="cateringOverheadOption">Catering Overhead</option>
+                            <option value="stationaryOption">Stationary</option>
+                            <option value="marketingOverheadOption">Marketing Overhead</option>
+                            <option value="capitalExpensesOption">Capital expenses</option>
+                        {% elif type_request == 'o' %}
+                            <option value="overheadOption">Over head</option>
+                            <option value="payOption">Payment</option>
+                            <option value="salaryWorkerOption">Worker salary</option>
+                            <option value="salaryTeacherOption">Teacher salary</option>
+                            <option value="cateringOverheadOption">Catering Overhead</option>
+                            <option value="stationaryOption">Stationary</option>
+                            <option value="marketingOverheadOption">Marketing Overhead</option>
+                            <option value="capitalExpensesOption">Capital expenses</option>
+                        {% elif type_request == 't' %}
+                            <option value="salaryTeacherOption">Teacher salary</option>
+                            <option value="payOption">Payment</option>
+                            <option value="salaryWorkerOption">Worker salary</option>
+                            <option value="overheadOption">Over head</option>
+                            <option value="stationaryOption">Stationary</option>
+                            <option value="cateringOverheadOption">Catering Overhead</option>
+                            <option value="marketingOverheadOption">Marketing Overhead</option>
+                            <option value="capitalExpensesOption">Capital expenses</option>
+                        {% elif type_request == 'w' %}
+                            <option value="salaryWorkerOption">Worker salary</option>
+                            <option value="payOption">Payment</option>
+                            <option value="salaryTeacherOption">Teacher salary</option>
+                            <option value="overheadOption">Over head</option>
+                            <option value="stationaryOption">Stationary</option>
+                            <option value="cateringOverheadOption">Catering Overhead</option>
+                            <option value="marketingOverheadOption">Marketing Overhead</option>
+                            <option value="capitalExpensesOption">Capital expenses</option>
+                        {% elif type_request == 'c' %}
+                            <option value="cateringOverheadOption">Catering Overhead</option>
+                            <option value="salaryWorkerOption">Worker salary</option>
+                            <option value="stationaryOption">Stationary</option>
+                            <option value="payOption">Payment</option>
+                            <option value="salaryTeacherOption">Teacher salary</option>
+                            <option value="overheadOption">Over head</option>
+                            <option value="marketingOverheadOption">Marketing Overhead</option>
+                            <option value="capitalExpensesOption">Capital expenses</option>
+                        {% elif type_request == 'm' %}
+                            <option value="marketingOverheadOption">Marketing overhead</option>
+                            <option value="salaryWorkerOption">Worker salary</option>
+                            <option value="payOption">Payment</option>
+                            <option value="stationaryOption">Stationary</option>
+                            <option value="salaryTeacherOption">Teacher salary</option>
+                            <option value="overheadOption">Over head</option>
+                            <option value="cateringOverheadOption">Catering overhead</option>
+                            <option value="capitalExpensesOption">Capital expenses</option>
+                        {% elif type_request == 's' %}
+                            <option value="stationaryOption">Stationary</option>
+                            <option value="marketingOverheadOption">Marketing overhead</option>
+                            <option value="salaryWorkerOption">Worker salary</option>
+                            <option value="payOption">Payment</option>
+                            <option value="salaryTeacherOption">Teacher salary</option>
+                            <option value="overheadOption">Over head</option>
+                            <option value="cateringOverheadOption">Catering overhead</option>
+                            <option value="capitalExpensesOption">Capital expenses</option>
+                        {% elif type_request == 'e' %}
+                            <option value="capitalExpensesOption">Capital expenses</option>
+                            <option value="stationaryOption">Stationary</option>
+                            <option value="marketingOverheadOption">Marketing overhead</option>
+                            <option value="salaryWorkerOption">Worker salary</option>
+                            <option value="payOption">Payment</option>
+                            <option value="salaryTeacherOption">Teacher salary</option>
+                            <option value="overheadOption">Over head</option>
+                            <option value="cateringOverheadOption">Catering overhead</option>
+                        {% endif %}
+                    </select>
+                    <button><a href="{{ url_for('collection') }}">collection</a></button>
+                    {% if type_request == 't' or type_request == 'w' %}
+                        <div class="pay_buttons">
+                            {% for account in account_types %}
+                                <button data-id="{{ account.id }}" class="salary_btn">{{ account.name }}</button>
+                            {% endfor %}
+                        </div>
+
+                        <select class="select_date" name="" id="select_year">
+                            <option value="">Year</option>
+                            {% for year in year_b %}
+                                <option value="{{ year.id }}">{{ year.year }}</option>
+                            {% endfor %}
+                        </select>
+                        <select class="select_date" name="" id="select_month">
+                            <option value="">Month</option>
+                            {% for month in month_b %}
+                                <option value="{{ month.id }}">{{ month.month_number }} {{ month.month_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <select class="select_date" name="" id="select_day">
+                            <option value="">Day</option>
+                            {% for day in day_b %}
+                                <option value="{{ day.id }}">{{ day.day_number }} {{ day.month.month_name }}</option>
+                            {% endfor %}
+                        </select>
+
+                    {% endif %}
+                </div>
+
+                <div class="filter">
+                    <select name="language_type" id="" class="account_type">
+                        <option value="all">all</option>
+                        {% for account_type in account_types %}
+                            <option value="{{ account_type.id }}">{{ account_type.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="class_number" class="year">
+                        <option value="all">all</option>
+                        {% for year in years %}
+                            <option value="{{ year }}">{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="class_number" class="month">
+                        <option value="all">all</option>
+                        {% for month in months %}
+                            <option value="{{ month }}">{{ month }}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="class_number" class="day">
+                        <option value="all">all</option>
+                        {% for day in days %}
+                            <option value="{{ day }}">{{ day }}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="form_filter">Search</button>
+                </div>
+            </div>
+
+            <div class="account_types" style="display: flex; width: 50%; justify-content: space-around">
+                <h1 style="margin-top: 30px; font-size: 30px">Balance: {{ balance }}</h1>
+                <h1 style="margin-top: 30px; font-size: 30px">Cash: {{ cash }}</h1>
+                <h1 style="margin-top: 30px; font-size: 30px">Bank: {{ bank }}</h1>
+                <h1 style="margin-top: 30px; font-size: 30px">Click: {{ click }}</h1>
+            </div>
+
+            <div class="pay_list">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>
+                            {% if type_request == 'p' %}
+                                Name
+                            {% elif type_request == 'o' %}
+                                Over head name
+                            {% elif type_request == 'c' %}
+                                Catering over head name
+                            {% elif type_request == 'm' %}
+                                Marketing over head name
+                            {% elif type_request == 'e' %}
+                                Capital expenses name
+                            {% elif type_request == 't' %}
+                                Teacher name
+                            {% elif type_request == 's' %}
+                                Stationary name
+                            {% elif type_request == 'w' %}
+                                Worker name
+                            {% endif %}
+                        </th>
+                        {% if type_request == 'w' %}
+                            <th>
+                                Profession
+                            </th>
+                        {% endif %}
+                        {% if type_request == 'p' %}
+                            <th>Sur name</th>
+                        {% elif type_request == 't' or type_request == 'w' %}
+                            <th>Payment reason</th>
+                        {% endif %}
+                        <th>
+                            {% if type_request == 'p' %}
+                                Payment
+                            {% elif type_request == 'o' or type_request == 'c' or type_request == 'm' or type_request == 's'or type_request == 'e' %}
+                                Cost
+                            {% elif type_request == 't' or type_request == 'w' %}
+                                Payment
+                            {% endif %}
+                        </th>
+                        <th>Payment type</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for page in payments %}
+                        {% if type_request == 'p' %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ page.student_month_payments.student.user.name }}</td>
+                                <td>{{ page.student_month_payments.student.user.surname }}</td>
+                                <td>{{ page.payed }}</td>
+                                <td>{{ page.student_month_payments.account_type.name }}</td>
+                                <td>{{ page.date.strftime("%Y-%m-%d") }}</td>
+                                <td><i class="fa-solid fa-trash delButton" style="color: red"
+                                       data-id="{{ page.id }}" data-type="{{ type_request }}"></i></td>
+                            </tr>
+                        {% elif type_request == 'o' or type_request == 'c' or type_request == 'm' or type_request == 's'or type_request == 'e' %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ page.name }}</td>
+                                <td>{{ page.payed }}</td>
+                                <td>{{ page.account_type.name }}</td>
+                                <td>{{ page.date.strftime("%Y-%m-%d") }}</td>
+                                <td><i class="fa-solid fa-trash delButton" style="color: red"
+                                       data-id="{{ page.id }}" data-type="{{ type_request }}"></i></td>
+                            </tr>
+                        {% elif type_request == 't' %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ page.teacher_salary.teacher.user.name }}</td>
+                                <td>{{ page.reason }}</td>
+                                <td>{{ page.given_salary }}</td>
+                                <td>{{ page.account_type.name }}</td>
+                                <td>{{ page.day.years.year }}-{{ page.day.month.month_number }}-{{ page.day.day_number }}</td>
+                                <td><i class="fa-solid fa-trash delButton" style="color: red"
+                                       data-id="{{ page.id }}" data-type="{{ type_request }}"></i></td>
+                            </tr>
+                        {% elif type_request == 'w' %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ page.worker_salary.worker.user.name }}</td>
+                                <td>{{ page.worker_salary.worker.job.name }}</td>
+                                <td>{{ page.reason }}</td>
+                                <td>{{ page.salary }}</td>
+                                <td>{{ page.account_type.name }}</td>
+                                <td>{{ page.day.years.year }}-{{ page.day.month.month_number }}-{{ page.day.day_number }}</td>
+                                <td><i class="fa-solid fa-trash delButton" style="color: red"
+                                       data-id="{{ page.id }}" data-type="{{ type_request }}"></i></td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="pay_next">
+                {% if page_prev %}
+                    <button><a href="{{ url_for("all_payments",type_request=type_request, page_num=page_prev) }}"><i
+                            class="fa-solid fa-chevron-left"></i></a></button>
+                {% else %}
+                    <button><i class="fa-solid fa-chevron-left"></i></button>
+                {% endif %}
+                {% for paginte in payments.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}
+                    {% if paginte %}
+                        <button><a
+                                href="{{ url_for("all_payments",type_request=type_request, page_num=paginte) }}">{{ paginte }}</a>
+                        </button>
+                    {% else %}
+                        <button>
+                            <span>...</span>
+                        </button>
+                    {% endif %}
+                {% endfor %}
+                {% if page_nex <= page_last %}
+                    <button><a href="{{ url_for("all_payments",type_request=type_request, page_num=page_nex) }}"><i
+                            class="fa-solid fa-chevron-right"></i></a></button>
+                {% else %}
+                    <button><i class="fa-solid fa-chevron-right"></i></button>
+                {% endif %}
+            </div>
+        </div>
+        {% if type_request == 'o' or type_request == 'c' or type_request == 'm'  or type_request == 's'or type_request == 'e' %}
+            <div class="harajat_plus_circle">
+                <div class="harajat_plus_radius"></div>
+                <div class="harajat_plus_plus">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+            </div>
+        {% endif %}
+
+        <form action="{{ url_for("add_cost", type_request=type_request) }}" method="post" class="payment">
+            <div class="payment_box">
+                <input name="name" class="nameInput" type="text" placeholder="Harajat nomi">
+                <input name="payed" class="payedInput" type="text" placeholder="Harajat summasi">
+                <select name="">
+                    <option value="">Kunlar</option>
+                </select>
+                <div class="payment_type">
+                    {% for account_type in account_types %}
+                        <div class="type">
+                            <input data-id="{{ account_type.id }}" type="radio" class="radio">
+                            <div>{{ account_type.name }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <input type="text" class="input_type_id" name="account_type_id" value="">
+                <button id="add">Add</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}
+{% block js %}
+    <script src="../../static/js/all_payments/all_payments.js"></script>
+    <script src="/static/js/student_payments_in_month/payments_in_monyh.js"></script>
+{% endblock %}

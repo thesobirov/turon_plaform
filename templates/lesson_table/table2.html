@@ -1,0 +1,90 @@
+{% extends 'admin/index.html' %}
+{% block css %}
+    <link rel="stylesheet" href="../../static/css/lesson_table/table.min.css">
+{% endblock %}
+
+{% block section %}
+    <section class="main">
+        <div class="main_select">
+            <select name="" id="" class="select">
+                {% for day in days %}
+                    <option value="{{ day.name }}">{{ day.name }}</option>
+                {% endfor %}
+            </select>
+            <div class="right_nav">
+
+                <div class="main_btns">
+                    <button id="patok">Patok</button>
+                    <button id="sinf">Sinf</button>
+                </div>
+                <a href="{{ url_for("timetables") }}" style="margin-top: 10px; align-self: flex-end">
+                    <button>Change</button>
+                </a>
+            </div>
+        </div>
+        {% for lessons in lesson_list %}
+            <div class="main_table {{ lessons["day_name"] }}">
+                <table>
+                    <thead>
+                    <tr>
+                        <th rowspan="2">Xonalar nomi</th>
+                        {% for time in times %}
+                            <th>{{ time.start }} : {{ time.end }}</th>
+                        {% endfor %}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for room in lessons["rooms"] %}
+                        <tr>
+                            <td>{{ room["class_info"] }}</td>
+                            {% for lesson in room["lessons"] %}
+
+                                {% if lesson["lesson_type"] == "flow" %}
+                                    <td class="flow_td">
+                                        <a href="{{ url_for("flow_profile", flow_id=lesson["flow_id"]) }}">
+                                            {% if lesson["teacher_name"] %}
+                                                <p class="flow_p">{{ lesson["teacher_name"] }}</p>
+                                            {% endif %}
+                                            {% if lesson["subject_name"] %}
+                                                <p class="flow_p">{{ lesson["subject_name"] }}</p>
+                                            {% endif %}
+                                            {% if lesson["flow_name"] %}
+                                                <p class="flow_p">{{ lesson["flow_name"] }}</p>
+                                            {% endif %}
+                                            {% if lesson["room_name"] %}
+                                                <p class="flow_p">{{ lesson["room_name"] }}</p>
+                                            {% endif %}
+                                        </a>
+                                    </td>
+                                {% else %}
+                                    {% if lesson["lesson_type"] == "simple" %}
+                                        <td class="simple_td">
+                                            <a href="{{ url_for("class_profile", class_id=lesson["class_id"]) }}">
+                                                {% if lesson["teacher_name"] %}
+                                                    <p class="simple_p">{{ lesson["teacher_name"] }}</p>
+                                                {% endif %}
+                                                {% if lesson["subject_name"] %}
+                                                    <p class="simple_p">{{ lesson["subject_name"] }}</p>
+                                                {% endif %}
+                                                {% if lesson["room_name"] %}
+                                                    <p class="simple_p">{{ lesson["room_name"] }}</p>
+                                                {% endif %}
+                                            </a>
+                                        </td>
+                                    {% else %}
+                                        <td></td>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}
+
+{% block js %}
+    <script src="../../static/js/lesson_table/lesson_table.js"></script>
+{% endblock %}

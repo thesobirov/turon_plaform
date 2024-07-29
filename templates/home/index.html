@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Turon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+          integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="icon" href="/static/img/home/img/logo.jpg">
+    <link rel="stylesheet" href="/static/css/home/main.min.css">
+    <link rel="stylesheet" href="/static/css/home/include/menu.min.css">
+    <style>
+
+
+        .active_color {
+            background-image: linear-gradient(270deg, #EBCAA4 -14.21%, #05347E 100%);
+        }
+    </style>
+</head>
+<body>
+
+
+<section style="height: 600px;" class="introduction">
+
+    {#    <video src="/static/video/home/video.mp4" muted autoplay loop></video>#}
+    <img style="height: 600px; object-fit: cover" class="school_background"
+         src="/static/img/home/img/school_background.JPG" alt="">
+
+    {% include 'home/menu.html' %}
+
+    <div class="introduction_backround">
+        {#        <div class="introduction_about">#}
+        {#            <h1>Turon <br>International School</h1>#}
+        {#            <p>Turon Xalqaro maktabi maqsadi - sog'lom fikrlay oladigan, ma'suliyatli har jabhada ham ilmiy ham ijodiy#}
+        {#                salohiyatga ega bo'lgan yaratuvchan va dunyo farovonligi, jamiyat rivoji uchun faol va ijobiy hissa#}
+        {#                qo'sha oladigan leader yoshlarni tarbiyalash</p>#}
+        {#            <a class="btn_light" href="{{ url_for('login') }}">Login</a>#}
+        {#        </div>#}
+    </div>
+
+
+</section>
+
+<section class="about">
+    <div class="about_big" style="display: flex; flex-direction: column">
+        <h1 style="font-size: 40px; color: white;width: 1200px; text-align: center">Our vision
+        </h1>
+        <p style="width: 1464px; font-size: 32px; color: white">"Our vision at Turon International School is to be a
+            pioneering
+            institution in Uzbekistan, renowned for excellence in STEM and IT education. We aim to foster a community of
+            innovative thinkers and global leaders, equipped with the knowledge and skills to shape the future. Our
+            commitment is to provide an inspiring and technologically advanced learning environment where students are
+            empowered to discover their passions, pursue excellence, and make meaningful contributions to the world."
+
+        </p>
+        <div style="display: flex; height: 30px;align-items: center" class="learn_more">
+            <a style="font-size: 30px; text-decoration: none; color: #001B61" href="">Learn more</a>
+            <i style="font-size: 30px; color: #001B61;margin-left: 10px" class="fa-solid fa-arrow-right"></i>
+        </div>
+    </div>
+</section>
+<section class="news">
+    <h1 class="title">YANGILIKLAR</h1>
+
+    <div class="news_block active ">
+        <div class="swiper swiper_none">
+            <div class="swiper-wrapper">
+
+                <div class="news_box swiper-slide">
+                    <img src="src/assets/img/Rectangle%20141.png" alt="">
+                    <div class="news_info">
+                        <h2>Lorem Ipsum is simply dummy text of the printing</h2>
+                        <div>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those
+                            interested.
+                            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also
+                            reproduced in
+                            their
+                            exact original form.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news_box swiper-slide">
+                    <img src="src/assets/img/photo_2024-01-14_17-33-30.jpg" alt="">
+                    <div class="news_info">
+                        <h2>Lorem Ipsum is simply dummy text of the printing</h2>
+                        <div>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those
+                            interested.
+                            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also
+                            reproduced in
+                            their
+                            exact original form.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="news_box swiper-slide">
+                    <img src="src/assets/img/school_background.JPG" alt="">
+                    <div class="news_info">
+                        <h2>Lorem Ipsum is simply dummy text of the printing</h2>
+                        <div>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those
+                            interested.
+                            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also
+                            reproduced in
+                            their
+                            exact original form.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="left"><i class="fa-solid fa-arrow-left"></i></div>
+            <div class="right"><i class="fa-solid fa-arrow-right"></i></div>
+
+        </div>
+
+
+    </div>
+
+    <div class="news_block">
+        <div class="news_box">
+            <img src="src/assets/img/Rectangle%20141.png" alt="">
+            <div class="news_info">
+                <h2>Lorem Ipsum is simply dummy text of the printing</h2>
+                <div>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those
+                    interested.
+                    Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also
+                    reproduced in
+                    their
+                    exact original form.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="news_box">
+            <img src="src/assets/img/photo_2024-01-14_17-33-30.jpg" alt="">
+            <div class="news_info">
+                <h2>Lorem Ipsum is simply dummy text of the printing</h2>
+                <div>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those
+                    interested.
+                    Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also
+                    reproduced in
+                    their
+                    exact original form.
+                </div>
+            </div>
+        </div>
+
+        <div class="news_box">
+            <img src="src/assets/img/Rectangle%20141.png" alt="">
+            <div class="news_info">
+                <h2>Lorem Ipsum is simply dummy text of the printing</h2>
+                <div>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those
+                    interested.
+                    Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also
+                    reproduced in
+                    their
+                    exact original form.
+                </div>
+            </div>
+        </div>
+
+        <div class="news_box">
+            <img src="src/assets/img/school_background.JPG" alt="">
+            <div class="news_info">
+                <h2>Lorem Ipsum is simply dummy text of the printing</h2>
+                <div>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those
+                    interested.
+                    Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also
+                    reproduced in
+                    their
+                    exact original form.
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</section>
+<section class="about">
+    <div class="about_big">
+        <div class="about_big_img">
+            <img src="/static/about_us_information_images/main_page2.jpg" style="object-fit: cover" alt="">
+        </div>
+        <div class="about_big_text">
+            <div class="name">
+                <h2>OUR MISSION</h2>
+                <h2></h2>
+            </div>
+            <div class="info">
+                <p>Mission Statement
+                    "The mission of Turon International School is to provide an exceptional education in science,
+                    technology, engineering, and mathematics, integrated with information technology, to students in
+                    Uzbekistan. We are dedicated to nurturing critical thinking, creativity, and a love for learning in
+                    our students. Our approach combines rigorous academic standards with practical, hands-on experience,
+                    ensuring our students are prepared for higher education and careers in a rapidly evolving global
+                    landscape. We commit to cultivating a diverse and inclusive community that respects individual
+                    differences and fosters collaboration, innovation, and ethical responsibility."</p>
+            </div>
+            <a class="btn">LEARN MORE</a>
+        </div>
+    </div>
+</section>
+
+
+<section class="s4">
+    <div class="main">
+        <div class="gallery">
+            <h1 class="text">GALLERY</h1>
+        </div>
+        <div class="big">
+
+        </div>
+    </div>
+</section>
+
+<section class="s5" style="display: none">
+    <div class="logo">
+
+    </div>
+</section>
+<section class="s6">
+    {#    <iframe class="map"#}
+    {#            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12036.21903323568!2d69.3533105!3d41.0459316!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae4135ee2bad79%3A0x84e5f388993c1a4a!2sToshkent%20viloyati%20Prezident%20Maktabi!5e0!3m2!1sru!2s!4v1678875013228!5m2!1sru!2s"#}
+    {#            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"#}
+    {#            referrerpolicy="no-referrer-when-downgrade"></iframe>#}
+    {#    <iframe class="map"#}
+    {#            src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d6002.565074347325!2d69.215336!3d41.215613!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDEyJzU2LjIiTiA2OcKwMTInNTUuMiJF!5e0!3m2!1sru!2s!4v1705234614060!5m2!1sru!2s"#}
+    {#            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"#}
+    {#            referrerpolicy="no-referrer-when-downgrade"></iframe>#}
+    <iframe class="map"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d187.58050645194035!2d69.2154399356516!3d41.21549168853272!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae61ab41db49f1%3A0x889c9f788b1c7aea!2sTuron%20xalqaro%20maktabi!5e0!3m2!1sru!2s!4v1705234704802!5m2!1sru!2s"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+<footer>
+
+    <div class="footerLinks">
+        <div class="box">
+            <h1>About us</h1>
+            <a href="{{ url_for("teach_asses") }}"><p>Teaching and Assesment</p></a>
+            <a href="{{ url_for("student_learning_and_well_being") }}"><p>Student learning and Well-being</p></a>
+            <a href="{{ url_for("community_and_partnership") }}"><p>Community and Home Partnership</p></a>
+            <a href="{{ url_for("premises") }}"><p>Premises</p></a>
+            <a href="{{ url_for("staffing") }}"><p>Staffing</p></a>
+            <a href="{{ url_for("governance_ownership_leadership") }}"><p>Governance, Ownership and Leadership</p></a>
+        </div>
+        <div class="box">
+            <h1>Other links</h1>
+            <a href="{{ url_for('education') }}"><p>Education</p></a>
+            <a href="{{ url_for('news_front') }}"><p>News</p></a>
+            <a href="{{ url_for('work_info') }}"><p>Work with us</p></a>
+            <a href="{{ url_for('campus_life') }}"><p>Campus Life</p></a>
+            <a href="{{ url_for('time_table') }}"><p>Academic Calendar</p></a>
+            <a href="{{ url_for("mock") }}"><p>Apply</p></a>
+        </div>
+        <div class="box">
+            <h1>Contact</h1>
+            <a href=""><p>Register</p></a>
+
+            <a href="https://www.instagram.com/turon_international_school/"><p>Instagram</p></a>
+            <a href=""><p>Telegram</p></a>
+            <a href=""><p>Facebook</p></a>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer_pslogo">
+            <img src="/static/img/logo.png" alt="">
+        </div>
+        <p style="font-size: 30px; position: absolute; right: 100px;">Phone number: +9998943103333</p>
+    </div>
+</footer>
+<script src="/static/js/include/menu/menu.js"></script>
+<script src="/static/js/home/home.js"></script>
+<script>
+    const header = document.querySelector(".introduction_entrance");
+    const li = document.querySelectorAll("header ol li a");
+    const p = document.querySelector("header ol li p");
+
+    li.forEach(item => {
+        item.style.color = "white"
+    })
+    p.style.color = "white"
+
+    function changeWidth() {
+        let scroll = (window.pageYOffset)
+        console.log(scroll)
+        let color1 = "#EBCAA4"
+        let color2 = "#05347E"
+        if (scroll >= 600) {
+            p.style.color = "black"
+            header.classList.add("active_color")
+            li.forEach(item => {
+                item.style.color = "black"
+            })
+        } else if (scroll <= 600) {
+            li.forEach(item => {
+                item.style.color = "white"
+            })
+            p.style.color = "white"
+            header.classList.remove("active_color")
+            header.style.backgroundColor = "transparent"
+        }
+    }
+
+    window.addEventListener("scroll", function () {
+        requestAnimationFrame(changeWidth)
+    })
+
+</script>
+</body>
+</html>

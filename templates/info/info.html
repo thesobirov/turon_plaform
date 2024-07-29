@@ -1,0 +1,24 @@
+<div class="menu_inside">
+
+    <ul>
+        <a href="{{ url_for("get_about_profile", type_id=about_us.id,info_id=about_id) }}">
+            <li>About us</li>
+        </a>
+        <a href="{{ url_for("vacation") }}">
+            <li>Vacancy</li>
+        </a>
+        <a href="{{ url_for('calendar_info',type_id=news.id) }}">
+            <li>News</li>
+        </a>
+        <a href="{{ url_for('infos',type_id=jobs.id) }}">
+            <li>Positions</li>
+        </a>
+
+        <a href="{{ url_for("gallery") }}">
+            <li>Images</li>
+        </a>
+        <a href="{{ url_for('partners') }}">
+            <li>Partners</li>
+        </a>
+    </ul>
+</div>
